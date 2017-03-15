@@ -21,6 +21,9 @@ public class AccessSite {
         this.password = password;
     }
 
+    public AccessSite (){
+        
+    }
     public int getUser_id() {
         return user_id;
     }
