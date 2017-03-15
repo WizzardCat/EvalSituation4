@@ -6,6 +6,7 @@
 package BDDDAO;
 
 import BDDSingleton.BDDSingleton;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -15,16 +16,25 @@ import java.util.ArrayList;
 public abstract class DAO<T> {
     
     protected BDDSingleton bddmanager = null;
+     Connection connect = BDDSingleton.getInstance().connect;
     
-    public DAO (){
+     public DAO (){
         this.bddmanager = BDDSingleton.getInstance();
     }
     
-    public abstract boolean creer(T obj);
+    public abstract boolean create(T obj);
     // INSERT INTO
     
-    public abstract boolean supprimer(T obj);
-    // requete préparée
-    public abstract ArrayList<T> getAll();
+    public abstract boolean update(T obj);
+    // Modify 
+    
+    public abstract boolean read(T obj);
+    // Select
+    
+    public abstract boolean delete(T obj);
+    // supress
+    
+    
+    public abstract ArrayList<T> find();
     
 }

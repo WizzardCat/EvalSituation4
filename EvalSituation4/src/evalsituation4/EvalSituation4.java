@@ -21,13 +21,14 @@ public class EvalSituation4 {
     public static void main(String[] args) {
 
         AccessSiteDAO assDAO = new AccessSiteDAO();
-        AccessSite komaji = new AccessSite(31, "Komaji", "bubup");
-        boolean resultat = assDAO.creer(komaji);
+        
+        /*AccessSite komaji = new AccessSite(31, "Komaji", "bubup");
+        boolean resultat = assDAO.create(komaji);
 
         System.out.println();
         System.out.println(resultat);
 
-        ArrayList<AccessSite> listeAccessSite = assDAO.getAll();
+        ArrayList<AccessSite> listeAccessSite = assDAO.find();
         System.out.println();
         System.out.println("Il y a " + listeAccessSite.size() + " élèves dans cette école");
         System.out.println();
@@ -35,7 +36,7 @@ public class EvalSituation4 {
         for (AccessSite ass : listeAccessSite) {
             System.out.println("Identifiant " + ass.getUser_id() + " Nickname " + ass.getNickname() + " Password " + ass.getPassword());
 
-        }
+        }*/
 
     }
 }

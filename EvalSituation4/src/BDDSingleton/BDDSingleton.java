@@ -22,7 +22,7 @@ public class BDDSingleton {
     private static final String DB_USER = "airafpa1";
     private static final String DB_PASSWORD = "blurp31";
     
-    private Connection cn = null;
+    public Connection connect = null;
         
         
               
@@ -51,11 +51,11 @@ public class BDDSingleton {
     
     public boolean connect() {
         
-        if (this.cn == null) {
+        if (this.connect == null) {
             
             
             try {
-                this.cn = DriverManager.getConnection(BDDSingleton.DB_URL, BDDSingleton.DB_USER, BDDSingleton.DB_PASSWORD);
+                this.connect = DriverManager.getConnection(BDDSingleton.DB_URL, BDDSingleton.DB_USER, BDDSingleton.DB_PASSWORD);
                 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -64,7 +64,7 @@ public class BDDSingleton {
         }else {
                 try {
                 
-                    Statement st = this.cn.createStatement();
+                    Statement st = this.connect.createStatement();
                     String requete = "SELECT 1"; 
                     ResultSet rs = st.executeQuery(requete);
                
@@ -72,7 +72,7 @@ public class BDDSingleton {
                      ex.printStackTrace();
                 
                     try {
-                        this.cn = DriverManager.getConnection(BDDSingleton.DB_URL, BDDSingleton.DB_USER, BDDSingleton.DB_PASSWORD);
+                        this.connect = DriverManager.getConnection(BDDSingleton.DB_URL, BDDSingleton.DB_USER, BDDSingleton.DB_PASSWORD);
                 
                     } catch (SQLException ex1) {
                         ex1.printStackTrace();
@@ -86,7 +86,7 @@ public class BDDSingleton {
     }
     
     public Connection getConnectonManager() {
-        return this.cn;
+        return this.connect;
     }
     
 }
