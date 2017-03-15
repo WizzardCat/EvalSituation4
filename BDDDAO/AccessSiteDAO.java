@@ -10,9 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -64,28 +63,26 @@ public class AccessSiteDAO extends DAO {
     }
 
     @Override
-    public ArrayList find() {
-        ArrayList<AccessSite> listeAccessSite = new ArrayList<>();
-      
-        if(this.bddmanager.connect()) {
-      
-            try {
-                Statement st = this.bddmanager.getConnectonManager().createStatement();
-                String requete = "SELECT * FROM AccessSite";
-                ResultSet rs = st.executeQuery(requete);
-                rs.next();
-                
-            
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                return listeAccessSite;
-            }
-        } else {
-            return listeAccessSite;
-        }
-      
+    public AccessSite find(int id) {
         
-        return listeAccessSite;
+       
+        try {
+            Statement st;
+            st = this.bddmanager.getConnectonManager().createStatement();
+            String requete = "SELECT * from accessite where id =id";
+            ResultSet rs = st.executeQuery(requete);
+            rs.next();
+           
+            AccessSite accesssites = new AccessSite();
+            rs.getInt(1);
+            rs.getString(requete);
+                    
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+       return accesssites;
     }
     
     @Override
@@ -102,8 +99,8 @@ public class AccessSiteDAO extends DAO {
                 "ALTER TABLE AccessSite values(?,?,?)");
       
                 updeatest.setInt(1,23);
-                updeatest.setString(2,"Roshan");
-                updeatest.setString(3, "CEO");
+                updeatest.setString(2," ");
+                updeatest.setString(3, " ");
                 updeatest.executeUpdate();
                 
                 Statement stmt = connect.createStatement();

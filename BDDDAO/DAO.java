@@ -35,6 +35,6 @@ public abstract class DAO<T> {
     // supress
     
     
-    public abstract ArrayList<T> find();
+    public abstract T find(int id);
     
 }
