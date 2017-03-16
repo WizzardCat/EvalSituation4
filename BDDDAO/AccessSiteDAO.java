@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,7 +55,6 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
 
         try {
 
-            Statement st = this.bddmanager.getConnectonManager().createStatement();
             PreparedStatement updeatest = this.connect.prepareStatement(
                     "ALTER TABLE AccessSite values(?,?,?)");
 
@@ -61,8 +62,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
             updeatest.setString(2, " ");
             updeatest.setString(3, " ");
             updeatest.executeUpdate();
-
-            Statement stmt = connect.createStatement();
+           
             ResultSet keys = updeatest.getGeneratedKeys();
             keys.next();
             int key = keys.getInt(1);
@@ -78,12 +78,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
 
     }
 
-    @Override
-    public AccessSite delete(Integer id) {
-        AccessSite accessite = new AccessSite();
-
-        return accessite;
-    }
+    
 
     @Override
     public AccessSite find(Integer id) {
@@ -105,5 +100,22 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
         }
 
         return accessite;
+    }
+    
+    @Override
+    
+    public void delete(Integer id) {
+                
+        try {
+            Statement st;
+            st = this.bddmanager.getConnectonManager().createStatement();
+            String requete = "SELECT * from accessite where id =id";
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+            
+
+        
     }
 }

@@ -28,12 +28,11 @@ public abstract class DAO<T,S> {
     public abstract T update(T obj);
     // Modify 
     
-    // Select
-    
-    public abstract T delete(S id);
+      
+    public abstract void delete(S id);
     // supress
     
     
     public abstract T find(S id);
-    
+    // Select
 }
