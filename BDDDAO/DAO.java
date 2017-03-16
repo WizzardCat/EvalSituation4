@@ -35,4 +35,11 @@ public abstract class DAO<T,S> {
     
     public abstract T find(S id);
     // Select
+    
+    public abstract boolean isValid(T obj);
+    // just in case to test all proprieties
+    
+    
+    public abstract ArrayList<T>getAll();
+    // Test the id if it exist
 }

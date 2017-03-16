@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,46 +24,46 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
 
     @Override
     public AccessSite create(AccessSite obj) {
+      
         AccessSite accessite = new AccessSite();
 
+        if(this.bddmanager.connect()) {
         try {
+            
+            //Statement st = this.bddmanager.getConnectonManager().createStatement();
+            PreparedStatement createst = this.bddmanager.getConnectonManager().prepareStatement("INSERT INTO Access_Site values(?,?,?)");
 
-            Statement st = this.bddmanager.getConnectonManager().createStatement();
-            PreparedStatement createst = this.connect.prepareStatement("INSERT INTO AccessSite values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
-
-            createst.setString(2, " ");
-            createst.setString(3, " ");
+            
+            createst.setInt(1, obj.getUser_id());
+            createst.setString(2, obj.getNickname());
+            createst.setString(3, obj.getPassword());
             createst.executeUpdate();
-            ResultSet keys = createst.getGeneratedKeys();
-            keys.next();
-            int key = keys.getInt(1);
-            accessite = this.find(key);
+            
+            
+            accessite = this.find(obj.getUser_id());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return accessite;
+           // return accessite;
 
         }
-        return accessite;
+      }return accessite;
     }
-
     @Override
     public AccessSite update(AccessSite obj) {
         AccessSite accessite = new AccessSite();
 
         try {
 
-            PreparedStatement updeatest = this.connect.prepareStatement("ALTER TABLE AccessSite values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement updeatest = this.connect.prepareStatement("UPDATE Access_Site SET nickname = ?, password = ? WHERE user_id = ?");
 
-            updeatest.setInt(1, 23);
-            updeatest.setString(2, " ");
-            updeatest.setString(3, " ");
+            updeatest.setInt(3, obj.getUser_id());
+            updeatest.setString(1, obj.getNickname());
+            updeatest.setString(2, obj.getPassword());
             updeatest.executeUpdate();
 
-            ResultSet keys = updeatest.getGeneratedKeys();
-            keys.next();
-            int key = keys.getInt(1);
-            accessite = this.find(key);
+            
+            accessite = this.find(obj.getUser_id());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -82,38 +83,75 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
             try {
             Statement st;
             st = this.bddmanager.getConnectonManager().createStatement();
-            String requete = "SELECT * from accessite where id = ?";
-            PreparedStatement stSuppr = this.bddmanager.getConnectonManager().prepareStatement(requete);
-            stSuppr.setInt(1, id);
+            String requete = "SELECT * FROM access_site WHERE user_id = " + id;
+            
             ResultSet rs = st.executeQuery(requete);
-            rs.next();
-            accessite.setUser_id(rs.getInt("user_id"));
-            accessite.setNickname(rs.getString("nickname"));
-            accessite.setPassword(rs.getString("password"));
+            if(rs.next()){
+                accessite.setUser_id(rs.getInt("user_id"));
+                accessite.setNickname(rs.getString("nickname"));
+                accessite.setPassword(rs.getString("password"));
+            };
             
             
-            
-        } catch (SQLException ex) {
+            } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-
-
-         }return accessite;
+            }
+            
+        } else {
+            return accessite;
+            
+        }   return accessite;
     }
+    
+    
     @Override
 
     public void delete(Integer id) {
 
         try {
-            Statement st;
-            st = this.bddmanager.getConnectonManager().createStatement();
-            PreparedStatement deletest = this.connect.prepareStatement("ALTER TABLE AccessSite values(?,?,?)");
-            String requete = "SELECT * from accessite where id =id";
-            deletest.executeUpdate(requete); 
+            //Statement st = this.bddmanager.getConnectonManager().createStatement();
+            PreparedStatement deletest = this.connect.prepareStatement("DELETE FROM access_site WHERE user_id = " + id);
+            deletest.executeUpdate(); 
             
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
     }
+
+    @Override
+    public boolean isValid(AccessSite obj) {
+        if(obj.getUser_id() == -1 || obj.getNickname() == null || obj.getPassword() == null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public ArrayList<AccessSite> getAll() {
+        
+    ArrayList<AccessSite> listeAccessSite = new ArrayList<>();
+      
+        if(this.bddmanager.connect()) {
+      
+            try {
+                Statement st = this.bddmanager.getConnectonManager().createStatement();
+                String requete = "SELECT * FROM Access_Site";
+                ResultSet rs = st.executeQuery(requete);
+                
+                while(rs.next()){
+                    AccessSite accessite = new AccessSite(rs.getInt("user_id"), rs.getString("nickname"), rs.getString("password"));
+                    listeAccessSite.add(accessite);
+                }
+            
+                } catch (SQLException ex) {
+                ex.printStackTrace();
+                return listeAccessSite;
+             }
+        } else {
+            return listeAccessSite;
+            
+        }return listeAccessSite;
+    }
+    
 }

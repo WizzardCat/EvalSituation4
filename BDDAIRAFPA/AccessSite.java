@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class AccessSite {
     
-    private int user_id;
+    private int user_id = -1;
     private String nickname;
     private String password;
 
@@ -26,6 +26,9 @@ public class AccessSite {
     public AccessSite (){
         
     }
+    
+    
+    
     public int getUser_id() {
         return user_id;
     }
