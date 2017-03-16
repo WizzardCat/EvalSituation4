@@ -44,6 +44,44 @@ public class RolesRights {
     public void setBlocked(int blocked) {
         this.blocked = blocked;
     }
+
+    @Override
+    public String toString() {
+        return "RolesRights{" + "user_id=" + user_id + ", admin=" + admin + ", blocked=" + blocked + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.user_id;
+        hash = 83 * hash + this.admin;
+        hash = 83 * hash + this.blocked;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RolesRights other = (RolesRights) obj;
+        if (this.user_id != other.user_id) {
+            return false;
+        }
+        if (this.admin != other.admin) {
+            return false;
+        }
+        if (this.blocked != other.blocked) {
+            return false;
+        }
+        return true;
+    }
     
     
     

@@ -5,6 +5,8 @@
  */
 package BDDAIRAFPA;
 
+import java.util.Objects;
+
 /**
  *
  * @author Formation
@@ -44,6 +46,44 @@ public class AccessBackOffice {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "AccessBackOffice{" + "user_id=" + user_id + ", nickname=" + nickname + ", password=" + password + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.user_id;
+        hash = 83 * hash + Objects.hashCode(this.nickname);
+        hash = 83 * hash + Objects.hashCode(this.password);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AccessBackOffice other = (AccessBackOffice) obj;
+        if (this.user_id != other.user_id) {
+            return false;
+        }
+        if (!Objects.equals(this.nickname, other.nickname)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        return true;
     }
     
     

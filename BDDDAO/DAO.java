@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Formation
  */
-public abstract class DAO<T> {
+public abstract class DAO<T,S> {
     
     protected BDDSingleton bddmanager = null;
      Connection connect = BDDSingleton.getInstance().connect;
@@ -22,19 +22,18 @@ public abstract class DAO<T> {
         this.bddmanager = BDDSingleton.getInstance();
     }
     
-    public abstract boolean create(T obj);
+    public abstract T create(T obj);
     // INSERT INTO
     
-    public abstract boolean update(T obj);
+    public abstract T update(T obj);
     // Modify 
     
-    public abstract boolean read(T obj);
     // Select
     
-    public abstract boolean delete(T obj);
+    public abstract T delete(S id);
     // supress
     
     
-    public abstract T find(int id);
+    public abstract T find(S id);
     
 }

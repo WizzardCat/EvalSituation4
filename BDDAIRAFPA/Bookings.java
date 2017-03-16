@@ -53,6 +53,48 @@ public class Bookings {
     public void setPlace(int place) {
         this.place = place;
     }
+
+    @Override
+    public String toString() {
+        return "Bookings{" + "id=" + id + ", user_id=" + user_id + ", flight_id=" + flight_id + ", place=" + place + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + this.id;
+        hash = 71 * hash + this.user_id;
+        hash = 71 * hash + this.flight_id;
+        hash = 71 * hash + this.place;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Bookings other = (Bookings) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.user_id != other.user_id) {
+            return false;
+        }
+        if (this.flight_id != other.flight_id) {
+            return false;
+        }
+        if (this.place != other.place) {
+            return false;
+        }
+        return true;
+    }
  
    
    

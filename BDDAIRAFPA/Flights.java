@@ -5,6 +5,8 @@
  */
 package BDDAIRAFPA;
 
+import java.util.Objects;
+
 /**
  *
  * @author Formation
@@ -132,6 +134,80 @@ public class Flights {
 
     public void setPlanned(int planned) {
         this.planned = planned;
+    }
+
+    @Override
+    public String toString() {
+        return "Flights{" + "id=" + id + ", departing_aita=" + departing_aita + ", arrival_aita=" + arrival_aita + ", departing_hour=" + departing_hour + ", duration=" + duration + ", price=" + price + ", id_pilot=" + id_pilot + ", id_copilot=" + id_copilot + ", id_staff1=" + id_staff1 + ", id_staff2=" + id_staff2 + ", id_staff3=" + id_staff3 + ", planned=" + planned + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.departing_aita);
+        hash = 97 * hash + Objects.hashCode(this.arrival_aita);
+        hash = 97 * hash + Objects.hashCode(this.departing_hour);
+        hash = 97 * hash + this.duration;
+        hash = 97 * hash + Objects.hashCode(this.price);
+        hash = 97 * hash + this.id_pilot;
+        hash = 97 * hash + this.id_copilot;
+        hash = 97 * hash + this.id_staff1;
+        hash = 97 * hash + this.id_staff2;
+        hash = 97 * hash + this.id_staff3;
+        hash = 97 * hash + this.planned;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Flights other = (Flights) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.duration != other.duration) {
+            return false;
+        }
+        if (this.id_pilot != other.id_pilot) {
+            return false;
+        }
+        if (this.id_copilot != other.id_copilot) {
+            return false;
+        }
+        if (this.id_staff1 != other.id_staff1) {
+            return false;
+        }
+        if (this.id_staff2 != other.id_staff2) {
+            return false;
+        }
+        if (this.id_staff3 != other.id_staff3) {
+            return false;
+        }
+        if (this.planned != other.planned) {
+            return false;
+        }
+        if (!Objects.equals(this.departing_aita, other.departing_aita)) {
+            return false;
+        }
+        if (!Objects.equals(this.arrival_aita, other.arrival_aita)) {
+            return false;
+        }
+        if (!Objects.equals(this.departing_hour, other.departing_hour)) {
+            return false;
+        }
+        if (!Objects.equals(this.price, other.price)) {
+            return false;
+        }
+        return true;
     }
     
     

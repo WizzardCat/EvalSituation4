@@ -5,6 +5,8 @@
  */
 package BDDAIRAFPA;
 
+import java.util.Objects;
+
 /**
  *
  * @author Formation
@@ -33,6 +35,40 @@ public class Functions {
 
     public void setDefinition(String definition) {
         this.definition = definition;
+    }
+
+    @Override
+    public String toString() {
+        return "Functions{" + "id=" + id + ", definition=" + definition + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + this.id;
+        hash = 23 * hash + Objects.hashCode(this.definition);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Functions other = (Functions) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.definition, other.definition)) {
+            return false;
+        }
+        return true;
     }
     
     

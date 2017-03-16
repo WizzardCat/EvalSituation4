@@ -5,6 +5,8 @@
  */
 package BDDAIRAFPA;
 
+import java.util.Objects;
+
 /**
  *
  * @author Formation
@@ -20,7 +22,7 @@ public class AccessSite {
         this.nickname = nickname;
         this.password = password;
     }
-
+    
     public AccessSite (){
         
     }
@@ -46,6 +48,44 @@ public class AccessSite {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "AccessSite{" + "user_id=" + user_id + ", nickname=" + nickname + ", password=" + password + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + this.user_id;
+        hash = 37 * hash + Objects.hashCode(this.nickname);
+        hash = 37 * hash + Objects.hashCode(this.password);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AccessSite other = (AccessSite) obj;
+        if (this.user_id != other.user_id) {
+            return false;
+        }
+        if (!Objects.equals(this.nickname, other.nickname)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        return true;
     }
     
     
