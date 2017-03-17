@@ -16,12 +16,14 @@ import java.util.ArrayList;
  *
  * @author Formation
  */
-public class AccessSiteDAO extends DAO<AccessSite, Integer> {
+public class AccessSiteDAO extends DAO<AccessSite, Long> {
 
     public AccessSiteDAO() {
         super();
     }
 
+    //Override of my methods and application of my CRUD
+    
     @Override
     public AccessSite create(AccessSite obj) {
       
@@ -30,21 +32,20 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
         if(this.bddmanager.connect()) {
         try {
             
-            //Statement st = this.bddmanager.getConnectonManager().createStatement();
+    
             PreparedStatement createst = this.bddmanager.getConnectonManager().prepareStatement("INSERT INTO Access_Site values(?,?,?)");
 
             
-            createst.setInt(1, obj.getUser_id());
+            createst.setLong(1, obj.getUser_id());
             createst.setString(2, obj.getNickname());
             createst.setString(3, obj.getPassword());
             createst.executeUpdate();
-            
             
             accessite = this.find(obj.getUser_id());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-           // return accessite;
+          
 
         }
       }return accessite;
@@ -57,12 +58,11 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
 
             PreparedStatement updeatest = this.connect.prepareStatement("UPDATE Access_Site SET nickname = ?, password = ? WHERE user_id = ?");
 
-            updeatest.setInt(3, obj.getUser_id());
+            updeatest.setLong(3, obj.getUser_id());
             updeatest.setString(1, obj.getNickname());
             updeatest.setString(2, obj.getPassword());
             updeatest.executeUpdate();
 
-            
             accessite = this.find(obj.getUser_id());
 
         } catch (SQLException ex) {
@@ -75,7 +75,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
     }
 
     @Override
-    public AccessSite find(Integer id) {
+    public AccessSite find(Long id) {
         AccessSite accessite = new AccessSite();
 
         if (this.bddmanager.connect()){
@@ -105,11 +105,10 @@ public class AccessSiteDAO extends DAO<AccessSite, Integer> {
     
     
     @Override
-
-    public void delete(Integer id) {
+    public void delete(Long id) {
 
         try {
-            //Statement st = this.bddmanager.getConnectonManager().createStatement();
+        
             PreparedStatement deletest = this.connect.prepareStatement("DELETE FROM access_site WHERE user_id = " + id);
             deletest.executeUpdate(); 
             

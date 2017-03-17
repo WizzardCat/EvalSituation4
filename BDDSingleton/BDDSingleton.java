@@ -25,7 +25,7 @@ public class BDDSingleton {
     public Connection connect = null;
         
         
-              
+    // Connection to my database & user
     
     private BDDSingleton() {
         

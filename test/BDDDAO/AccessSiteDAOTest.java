@@ -60,9 +60,10 @@ public class AccessSiteDAOTest {
    @Test
     public void testUpdate() {
         System.out.println("update");
-        AccessSite obj = new AccessSite(94, "toto", "password");
+        long keyss = 94;
+        AccessSite obj = new AccessSite(keyss, "toto", "password");
         AccessSiteDAO instance = new AccessSiteDAO();
-        String unexpResult = instance.find(94).toString();
+        String unexpResult = instance.find(keyss).toString();
         String result = instance.update(obj).toString();
         assertNotEquals(unexpResult, result);
     }
@@ -73,7 +74,7 @@ public class AccessSiteDAOTest {
    @Test
     public void testFind() {
         System.out.println("find");
-        Integer id = 20;
+        long id = 20;
         AccessSiteDAO instance = new AccessSiteDAO();
         String expResult = "AccessSite{user_id=20, nickname=accumsan, password=4b6cfa124411971901869dc6e1b00e5d3de5f1cc}";
         String result = instance.find(id).toString();
@@ -88,19 +89,18 @@ public class AccessSiteDAOTest {
     public void testDelete() {
         System.out.println("delete");
         AccessSite accesssite = new AccessSite();
-        Integer id = 97;
+        long id = 97;
         AccessSiteDAO instance = new AccessSiteDAO();
         instance.delete(id);
-        accesssite = instance.find(97);
+        accesssite = instance.find(id);
         assertFalse(instance.isValid(accesssite));
-
-        
         
     }
     
+    // Creation of my method getAll to find something on my ArrayList
     
  @Test
- public void getAll(){
+ public void TestGetAll(){
      System.out.println("get all");
      String result = "";
      String expResult = "";
