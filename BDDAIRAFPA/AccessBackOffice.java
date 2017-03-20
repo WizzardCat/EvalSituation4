@@ -13,22 +13,29 @@ import java.util.Objects;
  */
 public class AccessBackOffice {
     
-    
-    private int user_id;
-    private String nickname;
-    private String password;
+   private long user_id = -1;
+   private String nickname;
+   private String password;
 
-    public AccessBackOffice(int user_id, String nickname, String password) {
+    public AccessBackOffice(long user_id, String nickname, String password) {
         this.user_id = user_id;
         this.nickname = nickname;
         this.password = password;
     }
-
-    public int getUser_id() {
+    
+    // Empty constructor
+    
+    public AccessBackOffice (){
+        
+    }
+    
+    // Getters & Setters
+    
+    public long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
 
@@ -48,17 +55,20 @@ public class AccessBackOffice {
         this.password = password;
     }
 
+    // Modified override of my methods
+    
     @Override
     public String toString() {
         return "AccessBackOffice{" + "user_id=" + user_id + ", nickname=" + nickname + ", password=" + password + '}';
     }
 
+   
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.user_id;
-        hash = 83 * hash + Objects.hashCode(this.nickname);
-        hash = 83 * hash + Objects.hashCode(this.password);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.user_id);
+        hash = 37 * hash + Objects.hashCode(this.nickname);
+        hash = 37 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -85,7 +95,7 @@ public class AccessBackOffice {
         }
         return true;
     }
-    
-    
+
+   
     
 }

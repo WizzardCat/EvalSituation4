@@ -33,7 +33,7 @@ public class AccessSiteDAO extends DAO<AccessSite, Long> {
         try {
             
     
-            PreparedStatement createst = this.bddmanager.getConnectonManager().prepareStatement("INSERT INTO Access_Site values(?,?,?)");
+            PreparedStatement createst = this.bddmanager.getConnectonManager().prepareStatement("INSERT INTO access_site values(?,?,?)");
 
             
             createst.setLong(1, obj.getUser_id());
